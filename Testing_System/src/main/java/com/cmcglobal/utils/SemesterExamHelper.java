@@ -2,7 +2,7 @@ package com.cmcglobal.utils;
 
 import java.util.HashMap;
 
-public class ConstantSemesterExam {
+public class SemesterExamHelper {
 	
 	public static HashMap<Integer, String> statusSemesterExam(){
 		HashMap<Integer, String>  status = new HashMap<>();
