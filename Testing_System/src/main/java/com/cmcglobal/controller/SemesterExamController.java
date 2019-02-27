@@ -138,6 +138,17 @@ public class SemesterExamController {
 
 	}
 
+	/**
+	 * Create by: nvdiem - CMC
+	 * Create date: Feb 25, 2019
+	 * Modifier: nvdiem -CMC
+	 * Modified date: Feb 25, 2019
+	 * Description: ....
+	 * Version 1.0
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/users/{id}/semesters", method = RequestMethod.GET)
 	public ResponseEntity<ServiceResult> getSemesterListByUserId(@PathVariable("id") int id) {
 		return new ResponseEntity<ServiceResult>(examService.getSemesterListByUserId(id), HttpStatus.OK);

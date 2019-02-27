@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -43,6 +44,10 @@ public class SemesterExam {
 	private Date startTime;
 	@Column(name = "end_at")
 	private Date endTime;
+
+	@Column(name = "created_date")
+	@UpdateTimestamp
+	private Date createdDate;
 
 	@OneToMany(mappedBy = "semesterExam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Test> tests;

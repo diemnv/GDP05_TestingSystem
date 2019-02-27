@@ -49,8 +49,8 @@ public class SemesterExamServiceImpl implements SemesterExamService {
 	@Override
 	public ServiceResult getAllSemesterExam() {
 		ServiceResult result = new ServiceResult();
-		result.setTotalRecord(examRepository.findAll().size());
-		result.setData(examRepository.findAll());
+		result.setTotalRecord((int) examRepository.count());
+		result.setData(examRepository.findAllByOrderByCreatedDateDesc());
 		return result;
 	}
 
@@ -78,7 +78,8 @@ public class SemesterExamServiceImpl implements SemesterExamService {
 		} else {
 			examRepository.delete(semesterExam);
 			result.setStatus(Status.SUCCESS);
-			result.setData(examRepository.findAll());
+			result.setData(examRepository.findAllByOrderByCreatedDateDesc());
+			result.setTotalRecord((int) examRepository.count());
 		}
 		return result;
 	}
@@ -99,7 +100,6 @@ public class SemesterExamServiceImpl implements SemesterExamService {
 		StringBuilder stringBuilder = new StringBuilder("SELECT s FROM SemesterExam s ");
 
 		if (!"null".equals(name)) {
-			System.err.println("CHAY VAO DAY");
 			stringBuilder.append("WHERE s.name like '%" + name + "%'");
 			check++;
 		}
