@@ -23,7 +23,7 @@ import com.cmcglobal.repository.UserRepository;
 import com.cmcglobal.service.SemesterExamService;
 import com.cmcglobal.service.ServiceResult;
 import com.cmcglobal.service.ServiceResult.Status;
-import com.cmcglobal.utils.ConstantSemesterExam;
+import com.cmcglobal.utils.SemesterExamHelper;
 
 @Service
 public class SemesterExamServiceImpl implements SemesterExamService {
@@ -155,9 +155,9 @@ public class SemesterExamServiceImpl implements SemesterExamService {
 				int total_number_question = 0;
 				int total_user_test = 0;
 				float mean_mark = 0;
-				float[] start_mark = ConstantSemesterExam.startMarkclassification();
-				float[] end_mark = ConstantSemesterExam.endMarkclassification();
-				int[] rate_mark = new int[ConstantSemesterExam.classificationSemesterExam().length];
+				float[] start_mark = SemesterExamHelper.startMarkclassification();
+				float[] end_mark = SemesterExamHelper.endMarkclassification();
+				int[] rate_mark = new int[SemesterExamHelper.classificationSemesterExam().length];
 				for (Candidate candidate : list_candidate) {
 					User user = userRepository.findById(candidate.getUser().getUserId()).get();
 					user_join.add(user);
@@ -186,13 +186,13 @@ public class SemesterExamServiceImpl implements SemesterExamService {
 					mean_mark /= total_user_test;
 				semesterInformation.setSemesterExam(semesterExam);
 				semesterInformation.setStatus(
-						String.valueOf(ConstantSemesterExam.statusSemesterExam().get(semesterExam.getStatus())));
+						String.valueOf(SemesterExamHelper.statusSemesterExam().get(semesterExam.getStatus())));
 				semesterInformation.setTotal_number_exam(exams.size());
 				semesterInformation.setTotal_number_question(total_number_question);
 				semesterInformation.setTotal_user_join(user_join.size());
 				semesterInformation.setTotal_user_test(total_user_test);
 				semesterInformation.setMean_mark(mean_mark);
-				semesterInformation.setRate_title(ConstantSemesterExam.classificationSemesterExam());
+				semesterInformation.setRate_title(SemesterExamHelper.classificationSemesterExam());
 				semesterInformation.setRate_mark(rate_mark);
 			}
 
