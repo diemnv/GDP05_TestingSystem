@@ -163,10 +163,11 @@ public class SemesterExamServiceImpl implements SemesterExamService {
 					user_join.add(user);
 					List<CandidateTest> listCandidateTest = candidateTestRepository.findByCandidates(candidate);
 					if (!listCandidateTest.isEmpty()) {
+						user_test.add(candidate.getUser());
 						total_user_test++;
 					}
 					for (CandidateTest candidateTest : listCandidateTest) {
-						user_test.add(candidateTest.getCandidates().getUser());
+						
 						mean_mark += candidateTest.getMark();
 						for (int i = 0; i < start_mark.length; i++) {
 							if (start_mark[i] <= candidateTest.getMark() && candidateTest.getMark() < end_mark[i]) {
